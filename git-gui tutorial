@@ -1,0 +1,250 @@
+================================================================================ 
+Step 1: Create a github account to host your code
+================================================================================
+
+If you already have a fully functional github account, skip this step.
+
+Go to www.github.com.
+
+Create a new account, it's free! (As long as you choose the free option)
+
+Follow these instructions:
+https://help.github.com/articles/generating-ssh-keys
+HANG ON TO THE PASSWORD YOU CREATE
+
+You now have a viable github account!
+
+
+================================================================================
+Step 2: Get git-gui
+================================================================================
+
+Perform this step only if you are want to install git-gui on your personal
+machine. Otherwise, skip this step.
+
+Use the following terminal command:
+
+	sudo apt-get install git-gui
+
+Enter your password, Y to install, Y to install without verification, etc.,
+lots of text will stream by, blah, blah, blah.
+
+When it finishes, press Alt+F2 and type "git-gui", press Enter to start the
+application for now. You may want to create some sort of shortcut for this
+later. For now, we can use the Alt+F2 method.
+
+Proceed to the next step.
+
+
+================================================================================
+Step 3: First run of git-gui
+================================================================================
+
+When you first open git-gui, you will be presented with some options regarding
+repositories. Choose "Create New Repository" (unless you already have a
+repository set up because you already know this game). Select where you want to
+create a new repository (this is where your code will live). I would recommend
+creating a new folder, call it "MyFirstGitRepository" or something on your
+desktop or in your Documents folder. Once you've selected where to make the
+repository, create the repository
+
+
+================================================================================
+Step 4: Link your account to git-gui
+================================================================================
+
+Go to Edit->Options... and fill in just your name and e-mail address (matching
+your github account) on the Global (right) side. The left side has all of
+the same options, but they we only be applied to a specific repository. When
+you get mor knowledgrable you may want to play with the left side more. Now
+when you commit code changes, git-gui can say who made them.
+
+
+
+
+
+
+
+================================================================================
+Step 5: Make Your First VCed file!
+================================================================================
+
+Create a new code file in the folder that contains the repository. Make it
+something simple, like hello_git.cpp:
+
+#include <stdio>
+
+int main() {
+	puts("Hello git! I'mma learn you!");
+
+	return 0;
+}
+
+Click the "Rescan" button of git-gui (in the lower half of the window, to the
+left). You should see that your new file showed up under "Unstaged Changes."
+
+Now click the "Stage Changed" this will prepare our file to be committed (that
+is, make our changes permanent with the VCS).
+
+In the commit message text box, type some sort of message describing the changes
+that you've made. For now something like "Initial commit." should suffice.
+
+No press the "Commit" button. Our changes are now permanent! It looks like
+everything disappeared, but fear not, what has really happened is there are
+no changes to view.
+
+
+================================================================================
+Step 6: Changing and Committing a file!
+================================================================================
+
+Open up that simple code file you made, and let's make a different message.
+Maybe something like:
+
+#include <iostream>
+
+int main() {
+	std::cout << "Hello git! I'mma learn you!" << std::endl;
+	std::cout << "I've already made my first commit!" << std::endl;
+
+	return 0;
+}
+
+Rescan, and you'll notice that git-gui shows you the differences between the
+new version and the committed version. Old versions of altered lines are shown
+in red, new and added ones are shown in green, unchanged lines remain black.
+This helps you make sure that the changes you are making are the ones you want
+to make. Do give this a serious look before committing.
+
+And let's commit this change now too.
+
+If you ever want to commit some changed files and not all of the changed
+files, you can click on a file in the unstaged area and click "Stage Changed"
+and only that file will be moved.
+
+
+================================================================================
+Step 7: Branching!
+================================================================================
+
+In some cases there is only one version of a program. Other times, you want to
+have two versions because one is a stable version and the new one is
+experimental. The main, stable version is usually kept in a branch called
+"master" or "trunk." This way, cobases can make a sort of family-tree.
+
+Let's practice making a branch. Let's experiment with asking for some input.
+
+Go to Branch->Create... to make a new branch. Call it "InputExperiment" or
+something, and click the "Create" button.
+
+Now let's try some new code. Maybe:
+
+#include <iostream>
+
+int main() {
+	std::cout << "Hello git!" << std::endl;
+	std::cout << "I've already made my first commit!" << std::endl;
+
+	int numWorkshopsAttended = 0;
+	std::cout << "How many UNR ACM workshops have you attended?: ";
+	std::cin >> numWorkshopsAttended;
+	std::cout << "Fantastic! You have attended " << numWorkshopsAttended
+			  << "!" << std::endl;
+
+	return 0;
+}
+
+Now try Rescanning, and commit in the usual way.
+
+You now have 2 versions of a program! If you look in the folder where you set
+up the repository, you will only see one version of the code at a time, the code
+from the branch git-gui specifies in the top right under the various menus
+(Current Branch: <insert branch name here>). Where did the old code go? It's
+being safely in some hidden repository files that you will need to use git to
+access (this is a good thing, it prevents you from mixing versions).
+
+
+If you want to switch branches, simply do Branch->Checkout... and choose the
+branch you want to work with (pretend you are checking out a library book and
+you are only allowed one book at a time). git-gui will take care of everything
+and swap out each branch's files so you don't have to worry about working on
+the wrong ones. It takes care of it for you!
+
+
+================================================================================
+Step 7: Merging!
+================================================================================
+
+What happens when an experimental version becomes good enough to just be the
+real thing? Then we merge two branches, making them now the same branch.
+
+Let's start by checking out "master." Use Merge->Local Merge... to perform a
+merge. Pick "InputExperiment" and merge the branches. Should any conflicts arise
+(that is, differences between the files that git is not smart enough to know
+how to resolve), make the changes in the appropriate branch, commit the changes,
+then proceed with the merge.
+
+Now "master" will be the same as "Input Experiment," but "Input Experiment"
+still exists if you want to change it further, independent of "master." 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It's good to have something manage different versions for you, but the real
+advantage of a VCS is that it lets you manage different versions WITH OTHER
+PEOPLE! Remember how you had to setup a github account and find that SSH key?
+We had to do that so we could push and pull.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+================================================================================
+Step 7: Pushing!
+================================================================================
+
+So you've made some good code additions and changes. However, those only exist
+locally, that is, on your own machine. Your teamates don't have that new code,
+so you need to PUSH the code to a remote repository (like github) so your team
+can get the new code too.
+
+For this exercise, use github.com and simply create a repository of the same
+name as the one you have been working with, and follow the provided
+instructions. In the future, if you clone/pull from pre-existing repositories,
+you won't have to create the repository first.
+
+When creating a repository on github, you will see a screen with different
+versions of instructions for initializing the repository. Use the top set
+which will have a pair of buttons for "HTTP" and "SSH". Click SSH and copy
+that text to your clipboard. Then, back in git-gui, use Remote->Add... and
+paste the text in the second box. Use the first box to give this connection
+a meaningful name. If you don't do this step, you will just have to type in
+the remote repository's location in the next step.
+
+Now, simply click Remote->Push... and use the name of the remote id you just
+created or in the "Arbitrary Location:" box type
+
+	git@github.com:{github username}/{repository name}
+
+and click "Push." You may be prompted about unverified security and such. In
+this case, it's ok. You may have to enter a password, and it is likely the
+one you used in setting up your SSH key. The passwords and things should be a
+one time thing and you won't have to do them when working with this repository
+in the future. 
+
+
+================================================================================
+Step 7: Pulling!
+================================================================================
+
+
+
+
+================================================================================
+See Also
+================================================================================
+
+A good tutorial for use of git-gui with Windows and the basis of this tutorial:
+http://nathanj.github.io/gitguide/tour.html
+
+More good info on git-gui:
+http://matthew-brett.github.io/pydagogue/git_gui_windows.html
+
+A Good primer on using git via the terminal:
+https://help.github.com/articles/fetching-a-remote

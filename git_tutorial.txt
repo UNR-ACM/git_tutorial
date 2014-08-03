@@ -1,0 +1,307 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	An Intro to git
+	The open source, widely used Version Control System
+	https://github.com/UNR-ACM/git_tutorial
+
+	Presented by: Terence Henriod, UNR ACM
+	Content by:   Many others who are not explicitly listed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 0: Gather your materials for this workshop
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You will need:
+
+	A text editor (preferably a good one like SublimeText or one that's part
+	of an IDE, although a default TextEditor, like gedit, is fine)
+
+	A web browser (preferably Chrome) with a tab open to
+	https://github.com/
+
+	A web browser (preferably Chrome) with a tab open to
+	http://rogerdudler.github.io/git-guide/
+
+	Possibly a C++ compiler, like g++ (if you want to compile/run code)
+
+	A desire to become a contributing member of the coding community
+
+	To keep in mind the following metaphors/similes:
+		-Different versions of code can form a sort of 'family tree',
+		 with an origin (root), a trunk (sometimes referred to as
+		 "master") and branches
+
+		-We can check out different versions of code, like a book from
+		 a library, except you can only have one at a time
+
+		-Code, like a river, can fork and go different directions
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 1: Make your github.com account
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If you already have a github account setup and configured, skip this step.
+
+Go to your github browser tab.
+
+Create a new account, it's free! (As long as you choose the free option)
+
+Then, follow these instructions:
+https://help.github.com/articles/generating-ssh-keys
+HANG ON TO THE PASSWORD YOU CREATE
+at the part that says to do 'clip > blah blah blah', just do
+
+	gedit ~/.ssh/id_rsa.pub
+
+and copy and paste from there.
+
+You now have a viable github account!
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 2: Make a repository on github
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We will now make a repository to hold our files from this workshop.
+
+Click any link/button that says "New Repository"
+
+Name it "MyFirstRepository", give a description if you want, leave it public,
+don't make a readme yet. Click "Create Repository".
+
+You will see a few sets of instructions. You may want to save these, or
+rely on this tutorial. At the very least, in the top item, click the "SSH"
+button and save the corresponding text for later (write it down or save it in
+a text file).
+
+You have made your first repository where files can be stored!
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 3: Install git on your machine
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If you already have git installed on your machine, skip this step.
+(If you aren't sure, just type git into the terminal, hit enter, and 
+see if it tells you to install git)
+
+Open a terminal (Ctrl+T) and use the following command:
+
+	sudo apt-get install git
+
+Enter your password, say 'Y', let the text fly and the install finish. Ta-da!
+
+Now configure git so that it can know how to tag changes you make to files.
+Run:
+	git config --global user.email "you@example.com"
+	git config --global user.name "Your Name"
+
+ (using similar information as for your github account if appropriate)
+
+If you want to see the git output in pretty colors run:
+
+	git gonfig color.ui true
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 4: Make a local repository for this workshop
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Go to the "create a new repository" part of the simple guide webpage.
+
+Try to create a new repository somewhere convenient like on the Desktop or
+in the Documents folder. Call it "MyFirstRepository", just like on gihub.
+Be sure to navigate your terminal to that folder using 'cd <next subdirectory>'
+command before turning the folder into a repository.
+
+Now git can use this folder to manage any files you put in this folder.
+
+Let's add a file to it just so that we can have something to work with. How
+about hello_git.cpp:
+
+	#include <iostream>
+
+	int main() {
+		std::cout << "Hello git! I'mma learn you!";
+	
+		return 0;
+	}
+
+Make the file in the usual way (a simple text file saved as hello_git.cpp).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 5: Making commit[ment]s
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Skip ahead one section to the "Workflow" section. This describes
+some important concepts that can be summarized further: Working Directory is
+local changes that are not permanent as far as git is concerned, Index
+contains files that are ready to have their changes made official, and the
+Head represents versions that git considers more permanent. Read this section
+if you haven't already.
+
+Now put it in practice and perform the "add & commit" step. The first version
+of the add command is for if you want to selectively name files for adding.
+The version with the star is for all of the files in your directory (and
+will likely be used more often, plus it's easier to type "*" than an actual
+filename).
+
+Any commit message is fine, often people use "initial commit" for the first
+commit of a repository. After that, your message should probably indicate
+the nature of the changes you made from one version to the next.
+
+Note that if you don't use "-m "Your message"", a different screen pops up
+asking you to enter a commit message. (using -m tends to be easier)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 6: Pushing changes to a remote repository
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Our changes are permanent locally (on our machine) now, but let's make them
+permanent on github and available for other people if we are working in a
+group.
+
+Follow the second set of instructions in "pushing changes" first. Do note that
+when the site says "origin", whatever is there becomes the name of the
+remote repository as far as git is concerned. Use "origin" for now, but
+just know you have choice in the matter for the future. For the server name
+use "git@github.com:{your github username}/MyFirstRepository".
+
+If you screw up, you can re-add the remote repository with
+
+	git remote rm origin
+
+and then trying to add the remote repository information again.
+
+Now try the first set of instructions, it should be successful.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 7: Branching the family tree
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let's try some branching now, so we can maintain different versions of our
+code for when we want to experiment with a new feature.
+
+Follow the instructions for "branching", but before checking master back out,
+modify your code file or add a new one. Maybe something like:
+
+	#include <iostream>
+
+	int main() {
+		std::cout << "Hello git! I'mma learn you!" << std::endl;
+		std::cout << "I've already made my first commit!" << std::endl;
+
+		return 0;
+	}
+
+Commit these changes in the new branch, push them to the remote server.
+
+Let's not delete the branch, but just remember that you can delete branches 
+if you want. Try checking out each branch and look at the files in your 
+working directory and take note of how the files differ depending on
+which branch is checked out (be sure to close the code file each time, if you
+leave the file open, it will still show whatever code it had, regarless of
+whichever branch is currently checked out). The command to switch in general
+form is:
+
+	git checkout <branch name>
+
+I bet the "checking one book out at a time from the library" metaphor makes
+more sense now!
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 8: Merging our differences
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The next section of the tutorial, update & merge" has a lot of good things
+bundled together without enough connective tissue, IMO.
+
+When you want to update your local repository with the most current version
+of the code, you need to pull it from github. So we use the pull command.
+You can use this later as part of the take home part of this workshop. For
+now just remember its always good to start your day with a pull so that you
+are working from the most current version of code (or else you could be
+overwriting progress).
+
+Merging is for when you want to make those experimental features part of the
+main version of code. Make a slight change to your hello message in the
+"master" branch and commit it. Try merging "master" and "feature_x" now.
+Note that the syntax is slightly deceiving, the branch to be merged into
+is the one you currently have checked out (it will be the one that gets
+updated), and the one you type as a parameter is the branch that the new
+version of code is being copied from. After a successful merge, you will
+have two copies of the same code in two branches that can once again continue
+to change independently.
+
+Once you have attempted to merge, now you can experience a merge conflict.
+This happens when the same line has been changed and git doesn't know
+how to resolve the difference, so you have to change and commit one of
+the files so there is no longer a conflict. This only happens when the
+"same" line is different. With "different" lines, git knows how to handle
+it and won't make any noise, it just merges the files. Once the merge is
+complete, note that 
+
+The diff command is a wonderful command and you should make use of it
+regularly. It will help to show you exactly what the differences between
+files are to help you make sure that you are ok with what will change
+when you merge. Use it regularly. The output may seem confusing at first,
+but with some practice it will make more sense. If you want to play with the
+diff command, make some other branches or changes or whatever, and try it out.
+Type a 'q' to exit the diff screen.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Step 9: Parting words
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This workshop is starting to get a bit long, so explore the rest of the
+tutorial site on your own. As an exercise at home, try creating a new
+repository, but instead of making things of your own and pushing them to
+github, try pulling from:
+
+	git@github.com:UNR-ACM/goodies
+
+to get some things you might find nice to have. Feel free to add things of
+your own if you come up with them. You can make a pull request or ask to be
+a collaborator and help share any interesting scripts or code you think
+are generally helpful to the ACM public.
+
+Do finish reading the tutorial. It talks about some more good stuff that we
+probably didn't have time for.
+
+In the future, we will try to have most, if not all, of our workshops store
+the workshop code on the UNR-ACM github so you can pull it from there any time.
+
+Also, there is much more to learn, so start exploring and practicing right
+away.
+
+Of course, always start your workday with a pull and end with a push.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Check these out too!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A cheat sheet of today's workshop
+(and you thought we couldn't summarize more!):
+http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf
+
+
+Another good beginner's tutorial:
+http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1
+
+A good tutorial for using git with Windows via 'git-gui'
+Also full of good information in general:
+http://nathanj.github.io/gitguide/tour.html
+
+
