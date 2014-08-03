@@ -1,8 +1,0 @@
-#include <stdio>
-
-int main() {
-	puts("Hello git! I'mma learn you!");
-	puts("woot");
-
-	return 0;
-}
