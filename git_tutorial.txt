@@ -25,6 +25,8 @@ You will need:
 	A web browser (preferably Chrome) with a tab open to
 	http://rogerdudler.github.io/git-guide/
 
+	An open terminal (Use Ctrl+T or Ctrl+Alt+T, depending on your machine)
+
 	Possibly a C++ compiler, like g++ (if you want to compile/run code)
 
 	A desire to become a contributing member of the coding community
@@ -114,7 +116,7 @@ If you want to see the git output in pretty colors run:
 Go to the "create a new repository" part of the simple guide webpage.
 
 Try to create a new repository somewhere convenient like on the Desktop or
-in the Documents folder. Call it "MyFirstRepository", just like on gihub.
+in the Documents folder. Call it "MyFirstRepository", just like on github.
 Be sure to navigate your terminal to that folder using 'cd <next subdirectory>'
 command before turning the folder into a repository.
 
@@ -152,7 +154,7 @@ will likely be used more often, plus it's easier to type "*" than an actual
 filename).
 
 Any commit message is fine, often people use "initial commit" for the first
-commit of a repository. After that, your message should probably indicate
+commit of a repository. After this, your message should probably indicate
 the nature of the changes you made from one version to the next.
 
 Note that if you don't use "-m "Your message"", a different screen pops up
@@ -173,11 +175,11 @@ remote repository as far as git is concerned. Use "origin" for now, but
 just know you have choice in the matter for the future. For the server name
 use "git@github.com:{your github username}/MyFirstRepository".
 
-If you screw up, you can re-add the remote repository with
+If you screw up, you can re-add the remote repository using:
 
 	git remote rm origin
 
-and then trying to add the remote repository information again.
+and then trying to add the remote repository information again as before.
 
 Now try the first set of instructions, it should be successful.
 
@@ -208,8 +210,8 @@ if you want. Try checking out each branch and look at the files in your
 working directory and take note of how the files differ depending on
 which branch is checked out (be sure to close the code file each time, if you
 leave the file open, it will still show whatever code it had, regarless of
-whichever branch is currently checked out). The command to switch in general
-form is:
+whichever branch is currently checked out). The command to switch branches 
+(in general form) is:
 
 	git checkout <branch name>
 
@@ -293,7 +295,7 @@ Of course, always start your workday with a pull and end with a push.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A cheat sheet of today's workshop
-(and you thought we couldn't summarize more!):
+(and you thought it couldn't be summarized more!):
 http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf
 
 
