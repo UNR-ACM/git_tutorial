@@ -106,7 +106,7 @@ Run:
 
 If you want to see the git output in pretty colors run:
 
-	git gonfig color.ui true
+	git config color.ui true
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
